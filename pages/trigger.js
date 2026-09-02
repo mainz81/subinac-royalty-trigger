@@ -6,6 +6,18 @@ export default function Trigger() {
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState(null);
 
+  function formatError(error) {
+    if (!error) return "An unknown error occurred.";
+    if (typeof error === "string") return error;
+
+    const transactionCode = error?.extras?.result_codes?.transaction;
+    if (transactionCode) {
+      return `Stellar rejected the transaction (${transactionCode}). No payment was sent.`;
+    }
+
+    return error.detail || error.message || JSON.stringify(error);
+  }
+
   async function handleSubmit(e) {
     e.preventDefault();
     setLoading(true);
@@ -72,7 +84,7 @@ export default function Trigger() {
           )}
           {result.error && (
             <div style={{ color: "crimson", marginTop: 8 }}>
-              {result.error}
+              {formatError(result.error)}
             </div>
           )}
         </div>
