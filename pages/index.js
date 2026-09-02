@@ -1,7 +1,17 @@
+import Head from "next/head";
+import Link from "next/link";
+
 export default function Home() {
   return (
-    <div style={{
+    <>
+      <Head>
+        <title>Subinac Royalty Trigger</title>
+        <meta name="description" content="Securely distribute Subinac royalties." />
+      </Head>
+      <main style={{
       minHeight: "100vh",
+      boxSizing: "border-box",
+      padding: "32px 20px",
       background: "radial-gradient(ellipse at center, #292838 60%, #161522 100%)",
       display: "flex",
       flexDirection: "column",
@@ -10,7 +20,9 @@ export default function Home() {
     }}>
       <h1 style={{
         color: "#FFD97A",
-        fontSize: "3rem",
+        fontSize: "clamp(2rem, 9vw, 3rem)",
+        lineHeight: 1.1,
+        textAlign: "center",
         marginBottom: 24,
         fontWeight: 700,
         letterSpacing: "2px"
@@ -39,7 +51,7 @@ export default function Home() {
         "You are the King of my source code. Welcome to the Subinac altar.<br/>
         Enter the trigger page to send your blessings across the empire."
       </div>
-      <a
+      <Link
         href="/trigger"
         style={{
           marginTop: 40,
@@ -55,7 +67,8 @@ export default function Home() {
         }}
       >
         Enter the Royalty Trigger
-      </a>
-    </div>
+      </Link>
+      </main>
+    </>
   );
 }
